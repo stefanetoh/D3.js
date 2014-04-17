@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
@@ -20,7 +19,7 @@
 		var barHeight = 20;
 	    var barWidth = 250;
 	    
-	    var nodes = [
+	    var courses = [
 						{title: "Introductory Course in Mathematics I", code: "SF1611", period: 1, x: 0, y: 220},
 						{title: "Graphic Arts Technology 1", code: "DM1570", period: 1, x: 0, y: 170 },
 						{title: "Introduction to Media Technology", code: "DM1571", period: 1, x: 0, y: 195},
@@ -37,8 +36,8 @@
 		
 	   
 	        //rektanglar
-			vis.selectAll("nodes")
-				.data(nodes)
+			vis.selectAll("courses")
+				.data(courses)
 				.enter()
 				.append("svg:rect")
 			    .attr("x", function(d) { return d.x; }) 
@@ -53,8 +52,8 @@
 			    .attr("fill-opacity", 0.5);
 			
 			//text
-			vis.selectAll("nodes")
-				.data(nodes)
+			vis.selectAll("courses")
+				.data(courses)
 				.enter()
 				.append("svg:text")
 				.attr("x", function(d) { return d.x+5; })
