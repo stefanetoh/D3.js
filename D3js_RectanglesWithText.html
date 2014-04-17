@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title></title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<style type="text/css">	
+	</style>
+</head>
+
+<body>
+	<div id="graph">
+	</div>
+	
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var w = 900;
+	    var h = 400;
+		var barHeight = 20;
+	    var barWidth = 250;
+	    
+	    var nodes = [
+						{title: "Introductory Course in Mathematics I", code: "SF1611", period: 1, x: 0, y: 220},
+						{title: "Graphic Arts Technology 1", code: "DM1570", period: 1, x: 0, y: 170 },
+						{title: "Introduction to Media Technology", code: "DM1571", period: 1, x: 0, y: 195},
+						{title: "Calculus in One Variable", code: "SF1625", period: 2, x: 250, y: 145},
+						{title: "Programming for Interactive Media", code: "DD1314", period: 2, x: 250, y: 120}
+					];
+	    
+	   
+		
+		var vis = d3.select("#graph")
+	    		.append("svg")
+				.attr("width", w)
+				.attr("height", h);
+		
+	   
+	        //rektanglar
+			vis.selectAll("nodes")
+				.data(nodes)
+				.enter()
+				.append("svg:rect")
+			    .attr("x", function(d) { return d.x; }) 
+			    .attr("y", function(d) { return d.y; })
+			    .attr("rx", 5)
+			    .attr("ry", 5)
+			    .attr("stroke", "rgb(0,0,0)")
+			    .attr("stroke-width", 1)
+			    .attr("width", barWidth) // räkna ut bredden beroende på hur lång kursen varit senare
+			    .attr("height", barHeight)
+			    .attr("fill", "black")
+			    .attr("fill-opacity", 0.5);
+			
+			//text
+			vis.selectAll("nodes")
+				.data(nodes)
+				.enter()
+				.append("svg:text")
+				.attr("x", function(d) { return d.x+5; })
+				.attr("y", function(d) { return d.y+15; })
+				.attr("text-anchor", "start")
+				.attr("fill", "black")
+				.append("a")
+			    .attr("xlink:href", function(d) { return "https://www.kth.se/social/course/" + d.code + "/"})
+			    .attr("target", "_blank")
+				.text(function(d) { return d.title; });
+        
+	</script>
+</body>
+</html>
